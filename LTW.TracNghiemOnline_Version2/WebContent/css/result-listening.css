@@ -1,0 +1,41 @@
+
+.card-question img{
+    display: block !important;
+}
+
+.main-content .result-score-test{
+	text-indent: 220px;
+	background: url(../img/right-answer.jpg) no-repeat;
+	background-size: 100px;
+	background-position: 100px 0px;
+
+}
+.main-content .result-score-test h4{
+	color: #b00000;	
+	font-size: 25px;
+	letter-spacing: 0.5;
+}
+.main-content .result-score-test p{	
+	font-size: 19px;
+	margin: 30px 0px;
+}
+
+.answer-group .answer{	
+	display: flex;
+	/* background-size: 20px; */
+}
+.answer-group .answer input{
+	margin-top: 5px;
+	margin-right: 5px;
+}
+.answer-group .answer img{
+	width: 16px;
+	height: 16px;
+	margin-left: 10px;	
+}
+#wrong-answer{
+	color: red;
+}
+#wrong-answer .hidden{
+	visibility: hidden;
+}

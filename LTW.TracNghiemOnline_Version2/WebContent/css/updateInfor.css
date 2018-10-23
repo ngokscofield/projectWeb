@@ -1,0 +1,154 @@
+#main-content{
+	display: flex;
+	width: 1000px;
+}
+#toolbar-content-left{
+	width: 20%;
+	min-height: 400px;
+	background: #f2f2f2;
+}
+
+/* phần thông tin tổng quan của user */
+#infor-user-detail{	
+	margin: 30px;
+	width: 60%;	
+}
+#list-item-content li{
+	display: block;
+	height: 40px;
+	border-bottom: 1px #ccc solid;
+	text-indent: 20px;
+	line-height: 40px;
+	cursor: pointer;
+	box-shadow: inset 0px 0px 10px 0px #ccc;
+}
+#list-item-content li a{
+	text-decoration: none;
+	color: black;
+	display: block;
+}
+#list-item-content li :hover{
+	color: orange;
+	font-weight: bold;
+}
+#infor-user-detail h2{
+	font-weight: bold;
+}
+#infor-user-detail .detail{
+	display: flex;
+	height: 205px;
+	border: 1px solid #eddfd7;
+}
+#infor-user-detail .detail .avatar{		
+	padding: 20px;
+	border-right: #f7e8e0 1px solid;
+}
+#infor-user-detail .detail .avatar img{
+	width: 160px;
+	height: 160px;
+}
+#infor-user-detail .detail .user-infor{
+	margin-left: 25px;
+}
+h4{
+	font-size: 20px;
+}
+.user-infor .button a{
+	margin-top: 30px;
+	text-decoration: none;
+	display: inline-block;
+	width: 150px;
+	height: 50px;
+	background: #3d5ecc;
+	color: white;
+	font-weight: bold;
+	text-align: center;
+	line-height: 50px;
+	border-radius: 2px;
+	margin-right: 10px;
+}
+.user-infor .button a:hover{
+	background: #2748f0;
+}
+#infor-user-detail .additional-infor{
+	margin-top: 20px;
+	border: 1px solid #eddfd7;
+	min-height: 300px;
+}
+#infor-user-detail .additional-infor table{
+	margin: 20px;
+}
+#infor-user-detail .additional-infor table tr{
+	height: 50px;
+}
+.label{
+	width: 120px;
+}
+.input{
+	font-style: italic;
+	color: #888;
+}
+/* phần thay đổi mật khẩu của user */
+#change-password{
+	margin: 30px;
+	width: 60%;
+	display: none;
+}
+#change-password p{
+	font-weight: bold;
+	font-size: 20px;
+}
+.form{
+	margin-top: 20px;
+}
+.form .form-input{
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+	margin-top: 20px;
+	display: flex;
+}
+.form .form-input label{
+	width: 170px;
+	display: inline-block;
+}
+.form .form-input input{
+	height: 25px;
+	width: 100%;
+}
+.form .form-input input:focus{
+	background: #ffedb2;
+	outline: none;
+}
+.submit-form{
+	margin-top: 20px;
+	margin-left: 132px;
+	border: none;
+	background: #6ac728;
+	color: white;
+	height: 40px;
+	width: 200px;
+	font-weight: bold;
+	font-size: 15px;
+	border-radius: 3px;
+	cursor: pointer;
+}
+
+.submit-form:hover{
+	background: #6df022;
+}
+/* phần cập nhật thông tin cơ bản của user */
+
+#update-infor-user{
+	margin: 30px;
+	width: 60%;
+	display: none; 	
+}
+#update-infor-user p{
+	font-weight: bold;
+	font-size: 20px;	
+}
+.form .form-input select{
+	margin-left: -38px;
+	width: 70px;
+}

@@ -1,0 +1,45 @@
+#title{
+	display: flex;
+	font-size: 16px;
+	font-family: Tahoma;
+	font-weight: bold;
+	height: 70px;
+	padding: 20px 20px 5px 20px;
+	border-bottom: 1px #E8E8E8 solid;
+	box-shadow: 0px -1px 20px 0px #F0F0F0;
+}
+#title a{
+	color: #0070c0;
+	text-decoration: none;
+	padding-top: 16px;
+}
+#title .arrow-right{
+	padding: 15px 10px;	
+}
+#main-content{
+	display: flex;
+}
+#clock{	
+	float: left;
+	width: 20%;
+	min-height: 400px;
+	position: relative;
+	border-right: 1px #E8E8E8 solid;
+}
+
+#clock-icon{
+	position: relative;
+	background: url(../img/clock.png) no-repeat;
+	width: 128px;
+	height: 128px;
+	margin-top: 30px;	
+}
+#clock-time{
+	padding-top: 20px;
+	text-indent: 15px;
+	font-size: 16px;
+}
+#question-list{
+	flex: 1;
+	overflow: auto;
+}

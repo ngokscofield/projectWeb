@@ -1,0 +1,42 @@
+#top-panel{
+	padding-top: 20px;
+	text-align: center;
+}
+#top-panel h1{
+	text-transform: uppercase;
+}
+#top-panel p{
+	color: #888;
+	font-size: 15px;
+}
+
+#description{
+	margin-top: 30px;
+}
+
+#do-test{	
+	text-align: center;	
+}
+#main-content{
+	min-height: 370px;
+}
+#do-test a{
+	display: inline-block;
+	width: 120px;
+	height: 40px;
+	background: #0073AC;
+	line-height: 40px;
+	font-size: 15px;
+	border-radius: 4px;
+	text-decoration: none;
+	font-weight: bold;
+	color: white;
+	letter-spacing: 0.5px;
+	margin: auto;
+}
+
+#main-footer{
+	width: 1000px;
+	height: 300px;
+	background-image: url(../img/banner.jpg);
+}
