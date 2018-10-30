@@ -22,6 +22,10 @@
     <servlet-class>servletAction.LogoutServlet</servlet-class>
   </servlet>
   <servlet>
+    <servlet-name>AdminHomepage</servlet-name>
+    <servlet-class>adminServletAction.HomepageServlet</servlet-class>
+  </servlet>
+  <servlet>
     <servlet-name>ExamListServlet</servlet-name>
     <servlet-class>servletAction.ExamListServlet</servlet-class>
   </servlet>
@@ -37,4 +41,11 @@
     <servlet-name>LogoutServlet</servlet-name>
     <url-pattern>/logout</url-pattern>
   </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AdminHomepage</servlet-name>
+    <url-pattern>/admin-home</url-pattern>
+  </servlet-mapping>
+  <session-config>
+    <session-timeout>60</session-timeout>
+  </session-config>
 </web-app>

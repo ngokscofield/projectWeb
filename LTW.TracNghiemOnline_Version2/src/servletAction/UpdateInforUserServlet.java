@@ -25,19 +25,18 @@ public class UpdateInforUserServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//UserModel model = new UserModel();
 		HttpSession session = request.getSession();
 		UserModel model = (UserModel) session.getAttribute("User");			
 		if(model == null) {
 			response.sendRedirect(request.getContextPath()+"/login");
 			return;
-		}
-		//request.setAttribute("USER_ID", model.getUserID());
-		int userId = model.getUserID();
-		request.setAttribute("USER_MODEL", userDAO.getUserById(userId));
+		}		
+		int userId = model.getUserID();					
+		session.setAttribute("User", userDAO.getUserById(userId));
 		RequestDispatcher dispatcher = request.getRequestDispatcher("./views/userInfor.jsp");
 		dispatcher.forward(request, response);
 	}	
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub	
 		request.setCharacterEncoding("UTF-8");
@@ -51,8 +50,7 @@ public class UpdateInforUserServlet extends HttpServlet {
 		String job = userLogin.getJob();
 		int sex = userLogin.getSex();
 		
-		String password_form = request.getParameter("newPassword");		
-		String oldPassword_form = request.getParameter("oldPassword");		
+		String password_form = request.getParameter("newPassword");					
 		if(password_form == null) {
 			fullname = request.getParameter("fullname");
 			//System.out.println("Fullname: "+fullname);
@@ -77,9 +75,7 @@ public class UpdateInforUserServlet extends HttpServlet {
 		}
 		else {				
 			model = new UserModel(userId, fullname, phone, dateOfBirth, job, sex, password_form);
-			if(userDAO.update(model)) {
-				HttpSession session = request.getSession();
-				session.setAttribute("User", model);
+			if(userDAO.update(model)) {				
 				response.sendRedirect(request.getContextPath()+"/userInfor");			
 			}
 			else {

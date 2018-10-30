@@ -20,10 +20,12 @@ public class QuestionDAO {
 	
 	public ArrayList<Question> getAllQuestion() throws SQLException {
 		ArrayList<Question> questions = new ArrayList<Question>();
-		String sql = "select * from question";
+		String sql = "SELECT q.questionId, q.questionCode, q.content, q.image, q.categoryID, a.content as answerCorrect FROM question as q, answer as a\r\n" + 
+				"where q.questionCode = a.questionCode\r\n" + 
+				"and a.isCorrect = 1";
 		Statement stm = sqlConnection.connectDB().createStatement();
-		ResultSet rs = stm.executeQuery(sql);
-
+		ResultSet rs = stm.executeQuery(sql);		
+		
 		Question qs = null;
 		while (rs.next()) {
 			qs = new Question();
@@ -31,7 +33,8 @@ public class QuestionDAO {
 			qs.setQuestionCode(rs.getString("questionCode"));
 			qs.setContent(rs.getString("content"));
 			qs.setImage(rs.getString("image"));
-			qs.setCategoryId(rs.getInt("categoryId"));
+			qs.setCategoryId(rs.getInt("categoryId"));			
+			qs.setAnswer(rs.getString("answerCorrect"));
 			questions.add(qs);
 		}
 		return questions;
@@ -39,7 +42,10 @@ public class QuestionDAO {
 	
 	public ArrayList<Question> getQuestionByCategory(int categoryId) throws SQLException{
 		ArrayList<Question> questions = new ArrayList<Question>();
-		String sql = "select * from question where categoryId=?";
+		String sql = "SELECT q.questionId, q.questionCode, q.content, q.image, q.categoryID, a.content as answerCorrect FROM question as q, answer as a\r\n" + 
+				"where q.questionCode = a.questionCode\r\n" + 
+				"and a.isCorrect = 1\r\n" + 
+				"and categoryID = ?";		
 		PreparedStatement pSm = sqlConnection.connectDB().prepareStatement(sql);
 		pSm.setInt(1, categoryId);
 		ResultSet rs = pSm.executeQuery();
@@ -51,6 +57,7 @@ public class QuestionDAO {
 			qs.setContent(rs.getString("content"));
 			qs.setImage(rs.getString("image"));
 			qs.setCategoryId(rs.getInt("categoryId"));
+			qs.setAnswer(rs.getString("answerCorrect"));
 			questions.add(qs);
 		}
 		return questions;
@@ -118,6 +125,10 @@ public class QuestionDAO {
 			e.printStackTrace();
 		}
 		return false;
+	}
+	
+	public void getQuestion() {
+		
 	}
 	
 }

@@ -15,7 +15,6 @@
 </head>
 <body>
 	<%		
-		UserDAO userDAO = new UserDAO();
 		UserModel model = (UserModel) session.getAttribute("User");
 		
 	%>
@@ -28,7 +27,7 @@
 			<div id="header-content">
 				<%if(model != null){%>				
 				<ul class="list-item-header-after-signin">
-					<li class="header-item"><a href="./userInfor.jsp" class="user-avatar"><%=model.getFullname() %></a></li>
+					<li class="header-item"><a href="<%=request.getContextPath()%>/userInfor" class="user-avatar"><%=model.getFullname() %></a></li>
 					<li class="header-item "><a href="#" class="card-item-buy">Mua
 							thẻ</a></li>
 					<li class="header-item"><a href="#">Nạp thẻ</a></li>
@@ -64,6 +63,9 @@
 				<li class="front-menu-item" id="item-fixed-exam"><a href="#"
 					id="item-exam">Đề thi</a>
 					<ul class="dropdown" id="dropdown-exam">
+					<%if(model != null){ %>
+						<li><a href="<%=request.getContextPath()%>/mytest">Bài test của tôi</a></li>	
+					<%}%>
 						<li><a href="exam.jsp">Đánh giá trình độ</a></li>
 						<li><a href="#">Đề thi khối trung học cơ sở</a></li>
 						<li><a href="#">Đề thi khối trung học phổ thông</a></li>

@@ -64,6 +64,22 @@ public class UserDAO {
 		return role;
 	}
 
+	public boolean findUser(String email) {
+		String sql = "select * from user where email=?";
+		try {
+			PreparedStatement pSm = sqlConnection.connectDB().prepareStatement(sql);
+			pSm.setString(1, email);
+			ResultSet rs = pSm.executeQuery();
+			if(rs.next()) {
+				return true;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
 	public UserModel getUserById(int userId) {
 		String sql = "select * from user where userId=?";
 		UserModel model = null;
@@ -106,11 +122,18 @@ public class UserDAO {
 			model.setPassword(rs.getString("password"));
 			model.setEmail(rs.getString("email"));
 			model.setRole(rs.getInt("role"));
+			model.setPhone(rs.getString("phone"));
+			model.setDateOfBirth(rs.getString("dateOfBirth"));
+			model.setJob(rs.getString("job"));
+			model.setSex(rs.getInt("sex"));
 			stdList.add(model);
 		}
 		return stdList;
 	}
 
+	/*
+	 * Hàm thêm user vào CSDL
+	 */
 	public boolean insert(UserModel model) {
 		String sql = "INSERT INTO user (fullname, password, email, phone) VALUES(?, ?, ?, ?)";
 		try {
@@ -148,11 +171,11 @@ public class UserDAO {
 		return false;
 	}
 
-	public boolean delete(UserModel model) {
-		String sql = "delete from user where email=?";
+	public boolean delete(int userId) {
+		String sql = "delete from user where userId=?";
 		try {
 			PreparedStatement pSm = sqlConnection.connectDB().prepareStatement(sql);
-			pSm.setString(1, model.getEmail());
+			pSm.setInt(1, userId);
 			pSm.executeUpdate();
 			return true;
 		} catch (SQLException e) {
@@ -160,5 +183,22 @@ public class UserDAO {
 			e.printStackTrace();
 		}
 		return false;
+	}
+	
+	public int totalRecord() {
+		String sql = "SELECT count(*) as record FROM user;";
+		int record = 0;
+		try {
+			Statement stm = sqlConnection.connectDB().createStatement();
+			ResultSet rs = stm.executeQuery(sql);
+			if(rs.next()) {
+				record = rs.getInt("record");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return record;
+		
 	}
 }

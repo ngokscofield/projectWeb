@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import common.MD5Library;
 import dao.UserDAO;
 import model.UserModel;
 
@@ -49,8 +50,15 @@ public class RegisterServlet extends HttpServlet {
 		String email = request.getParameter("email");
 		String phone = request.getParameter("phone");
 		String password = request.getParameter("password");
-		UserModel model = new UserModel(name, email, phone, password);		
-		if(userDAO.insert(model)) {
+		String passwordMd5 = MD5Library.md5(password);
+		UserModel model = new UserModel(name, email, phone, passwordMd5);	
+		if(userDAO.findUser(email)) {
+			request.setAttribute("userError", model);
+			request.setAttribute("error", "Email đã tồn tại");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("./views/register.jsp");
+			dispatcher.forward(request, response);
+		}
+		else if(userDAO.insert(model)) {
 			response.sendRedirect(request.getContextPath()+"/login");
 		}
 		else {

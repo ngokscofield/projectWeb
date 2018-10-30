@@ -11,8 +11,10 @@
 </head>
 <body>
 <%
-	UserModel user = (UserModel)request.getAttribute("USER_MODEL");
+	UserModel user = (UserModel) session.getAttribute("User");	
 %>
+<form action="<%=request.getContextPath() %>/logout" method="get" id="logout">		
+</form>
 <div id="header">
 	<div id="header-placeholder">
 	<a href="<%=request.getContextPath()%>/home">
@@ -33,7 +35,7 @@
 				<a href="#">Giới thiệu</a>
 			</li>
 			<li class="header-item">
-				<a href="#">Thoát</a>
+				<a href="#" onclick="logout()">Thoát</a>
 			</li>
 		</ul>
 	</div>
@@ -71,6 +73,9 @@
 			<li class="front-menu-item" id="item-fixed-exam">		
 				<a href="#" id="item-exam">Đề thi</a>
 				<ul class="dropdown" id="dropdown-exam">
+			<%if(user != null){ %>
+				<li><a href="<%=request.getContextPath()%>/mytest">Bài test của tôi</a></li>	
+			<%}%>
 				<li><a href="exam.html">Đánh giá trình độ</a></li>
 				<li><a href="#">Đề thi khối trung học cơ sở</a></li>
 				<li><a href="#">Đề thi khối trung học phổ thông</a></li>
@@ -178,7 +183,7 @@
 				</div>
 				<div class="form-input">
 					<label class="label">Nghề nghiệp</label>
-					<input type="text" name="jop" id="jop" value="<%=user.getJob()%>">
+					<input type="text" name="jop" id="jop" value="<%=user.getJob()==null?"":user.getJob()%>">
 				</div>
 				<div class="form-input">
 					<label class="label">Giới tính</label>

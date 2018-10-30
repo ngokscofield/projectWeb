@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import common.MD5Library;
 import dao.UserDAO;
 import model.UserModel;
 
@@ -46,8 +47,8 @@ public class LoginServlet extends HttpServlet {
 		UserDAO userDAO = new UserDAO();		
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
-		
-		UserModel model = userDAO.login(email, password);
+		String passwordMd5 = MD5Library.md5(password);
+		UserModel model = userDAO.login(email, passwordMd5);
 		HttpSession httpSession = request.getSession();
 		httpSession.setAttribute("User", model);
 		if(model == null) {			
@@ -62,7 +63,7 @@ public class LoginServlet extends HttpServlet {
 				response.sendRedirect(request.getContextPath()+"/home");
 			}
 			else {
-				//response.sendRedirect(request.getContextPath()+"/admin"); chua xay dung trang admin
+				response.sendRedirect(request.getContextPath()+"/admin-home"); //chua xay dung trang admin
 			}
 		}
 	}

@@ -40,14 +40,14 @@ public class UserModel {
 		this.role = role;
 	}
 	
-	public UserModel(int userID, String fullname, String phone, String dateOfBirth, String jop, int sex,
+	public UserModel(int userID, String fullname, String phone, String dateOfBirth, String job, int sex,
 			String password) {
 		super();
 		this.userID = userID;
 		this.fullname = fullname;
 		this.phone = phone;
 		this.dateOfBirth = dateOfBirth;
-		this.job = jop;
+		this.job = job;
 		this.sex = sex;
 		this.password = password;
 	}
@@ -68,8 +68,8 @@ public class UserModel {
 		return job;
 	}
 
-	public void setJob(String jop) {
-		this.job = jop;
+	public void setJob(String job) {
+		this.job = job;
 	}
 
 	public int getSex() {

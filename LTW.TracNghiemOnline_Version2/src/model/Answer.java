@@ -23,6 +23,12 @@ public class Answer {
 		this.isCorrect = isCorrect;
 		this.questionCode = questionCode;
 	}
+	
+	public Answer(String content, String questionCode) {
+		super();
+		this.content = content;
+		this.questionCode = questionCode;
+	}
 
 	public int getAnswerId() {
 		return answerId;

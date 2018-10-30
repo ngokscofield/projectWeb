@@ -9,7 +9,8 @@ public class Question {
 	private String content;
 	private String image;
 	private int categoryId;
-	
+	private String answer;
+
 	public Question() {
 		super();
 	}
@@ -62,5 +63,11 @@ public class Question {
 	public void setCategoryId(int categoryId) {
 		this.categoryId = categoryId;
 	}
+	public String getAnswer() {
+		return answer;
+	}
 
+	public void setAnswer(String answer) {
+		this.answer = answer;
+	}
 }

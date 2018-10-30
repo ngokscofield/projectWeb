@@ -20,5 +20,9 @@ window.onload =function(e){
 	};			
 };
 function logout(){
-	document.getElementById("logout").submit();
+	var clicked = confirm("Bạn chắc chắn muốn thoát chứ?");
+	if(clicked == true){
+		document.getElementById("logout").submit();
+	}
+	
 }

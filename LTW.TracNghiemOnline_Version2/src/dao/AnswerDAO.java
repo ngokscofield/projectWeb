@@ -51,7 +51,7 @@ public class AnswerDAO {
 	}
 	
 	public boolean insert(Answer ans) {
-		String sql = "insert into question(content, isCorrect, questionCode) values(?, ?, ?)";
+		String sql = "insert into answer(content, isCorrect, questionCode) values(?, ?, ?)";
 		try {
 			PreparedStatement pSm = sqlConnection.connectDB().prepareStatement(sql);
 			pSm.setString(1, ans.getContent());			

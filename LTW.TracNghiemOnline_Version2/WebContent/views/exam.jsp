@@ -94,6 +94,9 @@
 			<li class="front-menu-item" id="item-fixed-exam">		
 				<a href="#" id="item-exam">Đề thi</a>
 				<ul class="dropdown" id="dropdown-exam">
+			<%if(model != null){ %>
+				<li><a href="<%=request.getContextPath()%>/mytest">Bài test của tôi</a></li>	
+			<%}%>
 				<li><a href="exam.html">Đánh giá trình độ</a></li>
 				<li><a href="#">Đề thi khối trung học cơ sở</a></li>
 				<li><a href="#">Đề thi khối trung học phổ thông</a></li>

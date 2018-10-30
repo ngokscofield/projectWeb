@@ -10,10 +10,8 @@
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/homepage.css">
 </head>
 <body>
-	<%
-		UserDAO userDAO = new UserDAO();
-		/* UserModel model = (UserModel) session.getAttribute("User");		 */
-		UserModel model = (UserModel)request.getAttribute("USER_MODEL");
+	<%		
+		UserModel model = (UserModel) session.getAttribute("User");	
 	%>
 	<form action="<%=request.getContextPath() %>/logout" method="get" id="logout">		
 	</form>
@@ -60,11 +58,16 @@
 				<li class="front-menu-item" id="item-fixed-exam"><a href="#"
 					id="item-exam">Đề thi</a>
 					<ul class="dropdown" id="dropdown-exam">
+					<%
+					if(model != null){ %>
+						<li><a href="<%=request.getContextPath()%>/mytest">Bài test của tôi</a></li>	
+					<% }%>
+						<li><a href="<%=request.getContextPath()%>/exam-list-detail">Đề thi toeic</a></li>
 						<li><a href="#">Đánh giá trình độ</a></li>
 						<li><a href="#">Đề thi khối trung học cơ sở</a></li>
 						<li><a href="#">Đề thi khối trung học phổ thông</a></li>
 						<li><a href="#">Đề thi tuyển sinh lớp 10</a></li>
-						<li><a href="<%=request.getContextPath()%>/exam-list-detail">Đề thi toeic</a></li>
+						
 					</ul></li>
 				<li class="front-menu-item"><a href="#">Từ vựng</a></li>
 				<li class="front-menu-item"><a href="#">Thư viện</a></li>
