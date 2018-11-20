@@ -21,8 +21,8 @@ import model.Category;
 import model.Question;
 import model.UserModel;
 
-@WebServlet("/addQuestion")
-public class AddQuestionServlet extends HttpServlet {
+@WebServlet("/createExam")
+public class CreateExamServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private CategoryDAO catDAO;
@@ -30,7 +30,7 @@ public class AddQuestionServlet extends HttpServlet {
 	private AnswerDAO answerDAO;
 	ArrayList<Category> listCategory;
 	
-    public AddQuestionServlet() {
+    public CreateExamServlet() {
         super();
         catDAO = new CategoryDAO();
         questionDAO = new QuestionDAO();

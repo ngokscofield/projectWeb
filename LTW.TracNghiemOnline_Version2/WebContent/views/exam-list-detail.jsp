@@ -22,7 +22,7 @@
 	</form>
 	<div id="header">
 		<div id="header-placeholder">
-			<a href="#"> <img src="<%=request.getContextPath()%>/img/logo.png" id="ucan-logo">
+			<a href="<%=request.getContextPath()%>/home"> <img src="<%=request.getContextPath()%>/img/logo.png" id="ucan-logo">
 			</a>
 			<div id="header-content">
 				<%if(model != null){%>				
@@ -66,11 +66,12 @@
 					<%if(model != null){ %>
 						<li><a href="<%=request.getContextPath()%>/mytest">Bài test của tôi</a></li>	
 					<%}%>
+						<li><a href="#">Đề thi toeic</a></li>
 						<li><a href="exam.jsp">Đánh giá trình độ</a></li>
 						<li><a href="#">Đề thi khối trung học cơ sở</a></li>
 						<li><a href="#">Đề thi khối trung học phổ thông</a></li>
 						<li><a href="#">Đề thi tuyển sinh lớp 10</a></li>
-						<li><a href="#">Đề thi toeic</a></li>
+						
 					</ul></li>
 				<li class="front-menu-item"><a href="#">Từ vựng</a></li>
 				<li class="front-menu-item"><a href="#">Thư viện</a></li>

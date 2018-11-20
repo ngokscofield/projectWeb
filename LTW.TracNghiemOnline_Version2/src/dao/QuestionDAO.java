@@ -63,6 +63,34 @@ public class QuestionDAO {
 		return questions;
 	}
 	
+	public ArrayList<Question> getQuestionByExam(int examId, int categoryId) throws SQLException{
+		ArrayList<Question> questions = new ArrayList<Question>();
+		String sql = "SELECT q.questionId, q.questionCode, q.content, q.image, q.categoryID, a.content as answerCorrect \r\n" + 
+				"FROM toeic.question as q, toeic.answer as a, toeic.questionexam as qExam\r\n" + 
+				"where q.questionCode = a.questionCode\r\n" + 
+				"	and q.questionId = qExam.questionId\r\n" + 
+				"	and a.isCorrect = 1\r\n" + 
+				"	and qExam.examId = ?\r\n" + 
+				"	and categoryID=?";		
+		PreparedStatement pSm = sqlConnection.connectDB().prepareStatement(sql);
+		pSm.setInt(1, examId);
+		pSm.setInt(2, categoryId);
+		ResultSet rs = pSm.executeQuery();
+		Question qs = null;
+		while (rs.next()) {
+			qs = new Question();
+			qs.setQuestionId(rs.getInt("questionId"));
+			qs.setQuestionCode(rs.getString("questionCode"));
+			qs.setContent(rs.getString("content"));
+			qs.setImage(rs.getString("image"));
+			qs.setCategoryId(rs.getInt("categoryId"));
+			qs.setAnswer(rs.getString("answerCorrect"));
+			questions.add(qs);
+		}
+		return questions;
+	}
+	
+	
 	public ArrayList<Question> getQuestionExamByCategory(int examId, int categoryId){
 		ArrayList<Question> questions = new ArrayList<Question>();
 		String sql = "select * from question\r\n" + 
@@ -93,7 +121,7 @@ public class QuestionDAO {
 		}
 		
 		return questions;
-	}
+	}	
 	
 	public boolean insert(Question qs) {
 		String sql = "insert into question(questionCode, content, image, categoryId) values(?, ?, ?, ?)";

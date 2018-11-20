@@ -1,3 +1,4 @@
+<%@page import="model.Exam"%>
 <%@page import="dao.AnswerDAO"%>
 <%@page import="model.Answer"%>
 <%@page import="model.Question"%>
@@ -27,6 +28,8 @@
 	ArrayList<Question> questionPart5 = (ArrayList<Question>)request.getAttribute("listPart5");
 	ArrayList<Question> questionPart6 = (ArrayList<Question>)request.getAttribute("listPart6");
 	ArrayList<Question> questionPart7 = (ArrayList<Question>)request.getAttribute("listPart7");	
+	
+	Exam exam = (Exam)request.getAttribute("examTitle");
 %>
 
 <div id="header">
@@ -46,13 +49,10 @@
 	<div id="notify-icon"></div>
 	<div id="user-icon"><%=user.getFullname() %></div>
 	</div>
-</div>
-</div>
 <div id="main">
 	<jsp:include page="./main-left.jsp"></jsp:include>
-	
 	<div id="main-content">		
-	<div class="main-right-header">Quản lý tài khoản sử dụng</div>
+	<div class="main-right-header"><%=exam.getTitle()%></div>
 	<div class="main-right-container">
 			<div class="toolbar">
 				<ul>
@@ -91,7 +91,7 @@
 
 					<li>
 						<span class="toolbar-help"></span>
-						<a href="<%=request.getContextPath()%>/addQuestion">Thêm câu hỏi</a>
+						<a href="<%=request.getContextPath()%>/createExam">Tạo mới đề thi</a>
 					</li>
 				</ul>
 			</div>
@@ -110,15 +110,6 @@
 							<td>Đáp án đúng</td>
 																				
 						</tr>
-						<!-- <tr>
-							<td><input type="text"></td>
-							<td><input type="text"></td>
-							<td><input type="text"></td>
-							<td><input type="text"></td>
-							<td><input type="text"></td>
-							<td><input type="text"></td>
-							<td><input type="text"></td>
-						</tr> -->
 						<%for(Question q : questionPart1){ %>
 						<tr>	
 							<td><a href="#"

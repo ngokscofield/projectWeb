@@ -127,7 +127,7 @@ public class ExamListeningDetailServlet extends HttpServlet {
 			}			
 		}
 		userExam.setCorrectNumber(rightAnswer);
-		//userExamDAO.insert(userExam);	
+		userExamDAO.insert(userExam);	
 		//System.out.println("userexam insert success");
 		int lastIdUserExam = userExamDAO.getLastId();
 		result.setUserExamId(lastIdUserExam);
@@ -138,7 +138,7 @@ public class ExamListeningDetailServlet extends HttpServlet {
 				int index = Integer.parseInt(request.getParameter("answerquestion"+i));
 				listAnswer.add(index);				
 				result.setAnswerSelected(index);
-				//resultDAO.insert(result);
+				resultDAO.insert(result);
 			} catch(NumberFormatException num) {				
 			}			
 		}

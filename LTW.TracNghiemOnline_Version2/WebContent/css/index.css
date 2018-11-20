@@ -190,3 +190,18 @@ margin-bottom: 20px;
     color: #000;
     padding-top: 15px;
 }
+.btnSubmitForm{
+	border: none;
+	width: 150px;
+	height: 50px;
+	background: #179b63;
+	color: white;
+	font-weight: bold;
+	text-align: center;
+	line-height: 50px;
+	cursor: pointer;
+	border-radius: 5px;
+}
+.btnSubmitForm:hover{
+	background: #006c28;
+}

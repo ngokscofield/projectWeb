@@ -6,21 +6,21 @@ import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.ExamDAO;
 import dao.QuestionDAO;
 import model.Question;
 import model.UserModel;
 
-@WebServlet("/manageQuestion")
-public class ManageQuestionServlet extends HttpServlet {
+public class ManageExamServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private QuestionDAO questionDAO;   
     ArrayList<Question> listQuestion;
+    private ExamDAO examDAO;
     
     ArrayList<Question> questionPart1 = null;
 	ArrayList<Question> questionPart2 = null;
@@ -30,9 +30,10 @@ public class ManageQuestionServlet extends HttpServlet {
 	ArrayList<Question> questionPart6 = null;
 	ArrayList<Question> questionPart7 = null;	
 	
-    public ManageQuestionServlet() {
+    public ManageExamServlet() {
         super();
         questionDAO = new QuestionDAO();
+        examDAO = new ExamDAO();
         // TODO Auto-generated constructor stub
     }
 
@@ -43,25 +44,27 @@ public class ManageQuestionServlet extends HttpServlet {
 		request.setAttribute("listPart4", questionPart4);
 		request.setAttribute("listPart5", questionPart5);
 		request.setAttribute("listPart6", questionPart6);
-		request.setAttribute("listPart7", questionPart7);
+		request.setAttribute("listPart7", questionPart7);		
     }
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
-		UserModel model = (UserModel) session.getAttribute("User");			
+		int examId = 0;
+		UserModel model = (UserModel) session.getAttribute("User");	
 		if(model == null) {
 			response.sendRedirect(request.getContextPath()+"/login");
 			return;
 		}	
-		try {			
-			questionPart1 = questionDAO.getQuestionByCategory(1);
-			questionPart2 = questionDAO.getQuestionByCategory(2);
-			questionPart3 = questionDAO.getQuestionByCategory(3);
-			questionPart4 = questionDAO.getQuestionByCategory(4);
-			questionPart5 = questionDAO.getQuestionByCategory(5);
-			questionPart6 = questionDAO.getQuestionByCategory(6);
-			questionPart7 = questionDAO.getQuestionByCategory(7);
+		try {		
+			examId = Integer.parseInt(request.getParameter("id"));
+			questionPart1 = questionDAO.getQuestionByExam(examId, 1);
+			questionPart2 = questionDAO.getQuestionByExam(examId, 2);
+			questionPart3 = questionDAO.getQuestionByExam(examId, 3);
+			questionPart4 = questionDAO.getQuestionByExam(examId, 4);
+			questionPart5 = questionDAO.getQuestionByExam(examId, 5);
+			questionPart6 = questionDAO.getQuestionByExam(examId, 6);
+			questionPart7 = questionDAO.getQuestionByExam(examId, 7);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -70,13 +73,14 @@ public class ManageQuestionServlet extends HttpServlet {
 			response.sendRedirect("./error.html");
 			return;
 		}
-		setAttribute(request);	
-		RequestDispatcher dispatcher = request.getRequestDispatcher("./admin/views/manageQuestion.jsp");
+		setAttribute(request);
+		request.setAttribute("examTitle", examDAO.getDetail(examId));
+		RequestDispatcher dispatcher = request.getRequestDispatcher("./admin/views/manageExam.jsp");
 		dispatcher.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
-	}
+	}	
 }

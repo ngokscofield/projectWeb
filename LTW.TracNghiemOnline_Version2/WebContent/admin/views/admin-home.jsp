@@ -11,6 +11,9 @@
 <body>
 <%
 	UserModel user = (UserModel) session.getAttribute("User");	
+	if(user.getRole()==0){
+		response.sendRedirect(request.getContextPath()+"/home");
+	}
 %>
 <div id="header">
 	<div id="category-icon"></div>

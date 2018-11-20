@@ -134,7 +134,7 @@ body{
 	color: #fff;
 	display: block;
 	height: 25px;
-	
+	width: 100%;
 	padding-top: 10px;
 }
 
@@ -151,22 +151,22 @@ ul li .arr-down{
 	background-position: 0px 15px;
 }
 #desk{
-	background: url(../img/home.png) no-repeat;
+	background: url(../img/recruitment.png) no-repeat;
 	background-position: 2px 2px;
 }
-#employee-profile{
+.stat-report{
 	background: url(../img/profile.png) no-repeat;
 	background-position: 2px 2px;
 }
-#dropdown:hover #dropdown-profile{
+.dropdown:hover .dropdown-detail{
 	display: block;
 } 
 #salary{
 	background: url(../img/salary.png) no-repeat;
 	background-position: 2px 2px;
 }
-#recruitment{
-	background: url(../img/recruitment.png) no-repeat;
+.manageExam{
+	background: url(../img/home.png) no-repeat;
 	background-position: 2px 2px;
 }
 #bonus{
@@ -205,16 +205,16 @@ ul li .arr-down{
 	background: url(../img/utility.png) no-repeat;
 	background-position: 2px 2px;
 }
-#dropdown-profile{
+.dropdown-detail{
 	display: none;
 }
-#dropdown-profile li a{
+.dropdown-detail li a{
 	width: 230px;
 	padding-top: 0;
 	background: #00577b;
 	border-bottom: #17a2b8 1px solid;
 }
-#dropdown-profile li a:hover{
+.dropdown-detail li a:hover{
 	background-color: #fd7e14;
 }
 #main-content{

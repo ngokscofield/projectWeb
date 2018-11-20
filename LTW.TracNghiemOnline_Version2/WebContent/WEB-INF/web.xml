@@ -29,6 +29,10 @@
     <servlet-name>ExamListServlet</servlet-name>
     <servlet-class>servletAction.ExamListServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>ManageExam</servlet-name>
+    <servlet-class>adminServletAction.ManageExamServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>HomepageServlet</servlet-name>
     <url-pattern>/home</url-pattern>
@@ -44,6 +48,10 @@
   <servlet-mapping>
     <servlet-name>AdminHomepage</servlet-name>
     <url-pattern>/admin-home</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ManageExam</servlet-name>
+    <url-pattern>/manageExam</url-pattern>
   </servlet-mapping>
   <session-config>
     <session-timeout>60</session-timeout>

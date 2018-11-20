@@ -25,6 +25,7 @@ html {
 </head>
 <body>
 	<%	
+	UserModel model = (UserModel) session.getAttribute("User");	
 	AnswerDAO answerDAO = new AnswerDAO();
 	ArrayList<Question> questionPart1 = (ArrayList<Question>)request.getAttribute("listPart1");
 	ArrayList<Question> questionPart2 = (ArrayList<Question>)request.getAttribute("listPart2");
@@ -69,6 +70,10 @@ html {
 				<li class="front-menu-item" id="item-fixed-exam"><a href="#"
 					id="item-exam">Đề thi</a>
 					<ul class="dropdown" id="dropdown-exam">
+					<%
+					if(model != null){ %>
+						<li><a href="<%=request.getContextPath()%>/mytest">Bài test của tôi</a></li>	
+					<% }%>
 						<li><a href="exam.html">Đánh giá trình độ</a></li>
 						<li><a href="#">Đề thi khối trung học cơ sở</a></li>
 						<li><a href="#">Đề thi khối trung học phổ thông</a></li>
@@ -366,7 +371,7 @@ html {
                         }
  					 %>	
  					 <div class="reading">
- 						 <input type="submit" value="Submit">
+ 						 <input type="submit" value="Submit" id="btnSubmitForm">
  					 </div>
  					 </form>	
 				</div>

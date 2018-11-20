@@ -16,6 +16,8 @@
 	UserModel  user = (UserModel) session.getAttribute("User");
 	ArrayList<StatExam> listExam = (ArrayList<StatExam>)request.getAttribute("listExam");
 %>
+<form action="<%=request.getContextPath()%>/logout" method="get" id="logout">		
+	</form>
 <div id="header">
 	<div id="header-placeholder">
 	<a href="<%=request.getContextPath()%>/home">
@@ -36,7 +38,7 @@
 				<a href="#">Giới thiệu</a>
 			</li>
 			<li class="header-item">
-				<a href="#">Thoát</a>
+				<a href="#" onclick="logout()">Thoát</a>
 			</li>
 		</ul>
 	</div>
@@ -74,11 +76,12 @@
 			<li class="front-menu-item" id="item-fixed-exam">		
 				<a href="#" id="item-exam">Đề thi</a>
 				<ul class="dropdown" id="dropdown-exam">
-				<li><a href="exam.html">Đánh giá trình độ</a></li>
+				<li><a href="<%=request.getContextPath()%>/exam-list-detail">Đề thi toeic</a></li>
+				<li><a href="#">Đánh giá trình độ</a></li>
 				<li><a href="#">Đề thi khối trung học cơ sở</a></li>
 				<li><a href="#">Đề thi khối trung học phổ thông</a></li>
 				<li><a href="#">Đề thi tuyển sinh lớp 10</a></li>
-				<li><a href="#">Đề thi toeic</a></li>
+				
 				</ul>
 			</li>
 			<li class="front-menu-item">

@@ -62,7 +62,7 @@ public class LoginServlet extends HttpServlet {
 			if(model.getRole() == 0) {
 				response.sendRedirect(request.getContextPath()+"/home");
 			}
-			else {
+			else{
 				response.sendRedirect(request.getContextPath()+"/admin-home"); //chua xay dung trang admin
 			}
 		}

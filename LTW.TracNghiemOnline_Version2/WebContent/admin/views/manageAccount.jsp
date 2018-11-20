@@ -11,9 +11,13 @@
 </head>
 <body>
 <%
-	UserModel user = (UserModel) session.getAttribute("User");	
+	UserModel user = (UserModel) session.getAttribute("User");
+	if(user.getRole()==0){
+		response.sendRedirect(request.getContextPath()+"/home");
+	}
 	ArrayList<UserModel> listUser = (ArrayList<UserModel>)request.getAttribute("listUser");
 	int totalRecord = Integer.parseInt(request.getAttribute("record").toString());
+	
 %>
 
 <div id="header">

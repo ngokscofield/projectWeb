@@ -19,10 +19,11 @@ public class StatExamDAO {
 	public ArrayList<StatExam> getStatExamByUser(int userId){
 		ArrayList<StatExam> listExam = new ArrayList<StatExam>();
 		String sql = "SELECT exam.title, Max(userexam.correctNumber) as highScore, userexam.examId, exam.imagePath\r\n" + 
-				"FROM userexam, exam, user\r\n" + 
-				"where userexam.examId = exam.examId\r\n" + 
-				"    and user.userId = ?\r\n" + 
-				"group by exam.title";
+				"				FROM toeic.userexam, toeic.exam, toeic.user \r\n" + 
+				"				where userexam.examId = exam.examId\r\n" + 
+				"					and userexam.userId = user.userId\r\n" + 
+				"				    and user.userId = ?\r\n" + 
+				"				group by exam.title";
 		try {
 			PreparedStatement pSm = sqlConnection.connectDB().prepareStatement(sql);
 			pSm.setInt(1, userId);

@@ -35,7 +35,7 @@ html {
 	%>
 	<div id="header">
 		<div id="header-placeholder">
-			<a href="#"> <img src="<%=request.getContextPath() %>/img/logo.png" id="ucan-logo">
+			<a href="<%=request.getContextPath()%>/home"> <img src="<%=request.getContextPath() %>/img/logo.png" id="ucan-logo">
 			</a>
 			<div id="header-content">
 				<ul class="list-item-header-after-signin">
@@ -294,7 +294,7 @@ html {
                         }
  					 %>	
  					 <div class="reading">
- 						 <input type="submit" value="Submit">
+ 						 <input type="submit" value="Submit" class="btnSubmitForm">
  					 </div>
  					 </form>	
 					
@@ -330,11 +330,11 @@ html {
 				</div>
 			</div>
 			<ul class="ucan-links">
-				<li><a href="">Giới thiệu</a></li>
-				<li><a href="">Liên hệ</a></li>
-				<li><a href="">Điều khoản sử dụng</a></li>
-				<li><a href="">Chính sách thanh toán</a></li>
-				<li><a href="">Chính sách bảo mật</a></li>
+				<li><a href="#">Giới thiệu</a></li>
+				<li><a href="#">Liên hệ</a></li>
+				<li><a href="#">Điều khoản sử dụng</a></li>
+				<li><a href="#">Chính sách thanh toán</a></li>
+				<li><a href="#">Chính sách bảo mật</a></li>
 			</ul>
 		</div>
 	</footer>

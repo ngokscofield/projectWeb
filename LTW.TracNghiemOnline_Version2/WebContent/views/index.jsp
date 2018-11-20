@@ -199,10 +199,11 @@
 		</div>
 		|
 		<div id="promotion-time">
-			Còn lại <b>12 GIỜ : 00 PHÚT : 00 GIÂY</b>
+			Còn lại <b><span id="hour"></span> GIỜ : <span id="minute"></span> PHÚT : <span id="second"></span> GIÂY</b>
 		</div>
 		<div id="promotion-renewal">GIA HẠN NGAY</div>
 	</div>
 </body>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/index.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/countdown_footer.js"></script>
 </html>
