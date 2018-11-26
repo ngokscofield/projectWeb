@@ -26,7 +26,7 @@
 	<div id="header-content">
 		<ul class="list-item-header-after-signin">			
 			<li class="header-item">
-				<a href="#" class="user-avatar"><%=user.getFullname() %></a>
+				<a href="<%=request.getContextPath()%>/userInfor" class="user-avatar"><%=user.getFullname() %></a>
 			</li>
 			<li class="header-item ">
 				<a href="#" class="card-item-buy">Mua thẻ</a>

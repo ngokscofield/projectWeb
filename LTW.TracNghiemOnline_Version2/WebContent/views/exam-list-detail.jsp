@@ -15,8 +15,8 @@
 </head>
 <body>
 	<%		
-		UserModel model = (UserModel) session.getAttribute("User");
-		
+		UserModel model = (UserModel) session.getAttribute("User");	
+		ArrayList<Exam> listExam = (ArrayList<Exam>)request.getAttribute("listExam");
 	%>
 	<form action="<%=request.getContextPath()%>/logout" method="get" id="logout">		
 	</form>
@@ -27,9 +27,8 @@
 			<div id="header-content">
 				<%if(model != null){%>				
 				<ul class="list-item-header-after-signin">
-					<li class="header-item"><a href="<%=request.getContextPath()%>/userInfor" class="user-avatar"><%=model.getFullname() %></a></li>
-					<li class="header-item "><a href="#" class="card-item-buy">Mua
-							thẻ</a></li>
+					<li class="header-item"><a href="<%=request.getContextPath()%>/userInfor" class="user-avatar"><%=model.getFullname()%></a></li>
+					<li class="header-item "><a href="#" class="card-item-buy">Mua thẻ</a></li>
 					<li class="header-item"><a href="#">Nạp thẻ</a></li>
 					<li class="header-item"><a href="#">Giới thiệu</a></li>
 					<li class="header-item" ><a href="#" onclick="logout()">Thoát</a></li>
@@ -37,8 +36,7 @@
 				<%} else { %>
 				<ul class="list-item-header-before-siginin">
 					<li class="header-item"><a href="#">Giới thiệu</a></li> |
-					<li class="header-item"><a href="#" class="card-item-buy">Mua
-							thẻ</a></li> |
+					<li class="header-item"><a href="#" class="card-item-buy">Mua thẻ</a></li> |
 					<li class="header-item"><a href="<%=request.getContextPath()%>/login">Đăng nhập</a></li> |
 					<li class="header-item"><a href="<%=request.getContextPath()%>/register">Đăng ký</a></li>
 				</ul>
@@ -70,9 +68,9 @@
 						<li><a href="exam.jsp">Đánh giá trình độ</a></li>
 						<li><a href="#">Đề thi khối trung học cơ sở</a></li>
 						<li><a href="#">Đề thi khối trung học phổ thông</a></li>
-						<li><a href="#">Đề thi tuyển sinh lớp 10</a></li>
-						
-					</ul></li>
+						<li><a href="#">Đề thi tuyển sinh lớp 10</a></li>						
+					</ul>
+				</li>
 				<li class="front-menu-item"><a href="#">Từ vựng</a></li>
 				<li class="front-menu-item"><a href="#">Thư viện</a></li>
 				<li class="front-menu-item"><a href="#">Trường lớp</a></li>
@@ -96,16 +94,13 @@
 				</div>
 				
 				<div id="exam-list-box">
-				<% 
-					ExamDAO examDAO = new ExamDAO();
-					ArrayList<Exam> exams = examDAO.getAllExam();
-					for(Exam e : exams){%>
+				<% 					
+					for(Exam e : listExam){%>
 						<a href="<%=request.getContextPath()%>/exam?id=<%=e.getExamId() %>" class="exam-list-box-detail">					
-						<img src="<%=request.getContextPath()%>/img/<%=e.getImagePath()%>">
+						<img src="<%=request.getContextPath()%>/img/<%=e.getImagePath() %>">
 						<h3 class="exam-list-header"><%=e.getTitle() %></h3>
 						<ul class="statistics">
-							<li>
-								
+							<li>								
 							</li>
 							<li>
 								<span class="icon-view">
@@ -122,8 +117,7 @@
 						</ul>
 					</a>
 				
-				<%}%>
-					
+				<%}%>					
 				</div>
 			</div>
 			<div id="category-box">

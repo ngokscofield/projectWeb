@@ -51,7 +51,5 @@ public class Exam {
 
 	public void setImagePath(String imagePath) {
 		this.imagePath = imagePath;
-	}
-	
-	
+	}	
 }

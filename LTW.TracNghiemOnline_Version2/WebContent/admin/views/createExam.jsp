@@ -15,6 +15,7 @@
 <%
 	UserModel user = (UserModel) session.getAttribute("User");		
 	ArrayList<Category> listCategory  = (ArrayList<Category>)request.getAttribute("listCategory");
+	
 %>
 <div id="header">
 	<div id="category-icon"></div>
@@ -37,7 +38,6 @@
 </div>
 <div id="main">
 	<jsp:include page="./main-left.jsp"></jsp:include>
-	
 	<div id="main-content">		
 		<div id="update-infor-user">
 			<p>Thêm câu hỏi</p>

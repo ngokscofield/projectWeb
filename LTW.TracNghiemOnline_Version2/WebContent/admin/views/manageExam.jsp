@@ -91,7 +91,7 @@
 
 					<li>
 						<span class="toolbar-help"></span>
-						<a href="<%=request.getContextPath()%>/createExam">Tạo mới đề thi</a>
+						<a href="<%=request.getContextPath()%>/createExam?id=<%=exam.getExamId()%>">Tạo mới đề thi</a>
 					</li>
 				</ul>
 			</div>
@@ -107,13 +107,12 @@
 							<td>Đáp án B</td>
 							<td>Đáp án C</td>
 							<td>Đáp án D</td>
-							<td>Đáp án đúng</td>
-																				
+							<td>Đáp án đúng</td>																			
 						</tr>
 						<%for(Question q : questionPart1){ %>
 						<tr>	
 							<td><a href="#"
-							onclick="./AddQuestion.jsp?id=<%=q.getQuestionId()%>">Edit</a>
+							onclick="#">Edit</a>
 							<a href="#">Delete</a>
 							</td>	
 							<td><%=q.getCategoryId() %></td>

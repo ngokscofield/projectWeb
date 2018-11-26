@@ -52,7 +52,7 @@
 	<jsp:include page="./main-left.jsp"></jsp:include>
 	
 	<div id="main-content">		
-	<div class="main-right-header">Quản lý tài khoản sử dụng</div>
+	<div class="main-right-header">Quản lý câu hỏi</div>
 	<div class="main-right-container">
 			<div class="toolbar">
 				<ul>
@@ -107,18 +107,8 @@
 							<td>Đáp án B</td>
 							<td>Đáp án C</td>
 							<td>Đáp án D</td>
-							<td>Đáp án đúng</td>
-																				
-						</tr>
-						<!-- <tr>
-							<td><input type="text"></td>
-							<td><input type="text"></td>
-							<td><input type="text"></td>
-							<td><input type="text"></td>
-							<td><input type="text"></td>
-							<td><input type="text"></td>
-							<td><input type="text"></td>
-						</tr> -->
+							<td>Đáp án đúng</td>																			
+						</tr>						
 						<%for(Question q : questionPart1){ %>
 						<tr>	
 							<td><a href="#"
@@ -342,18 +332,15 @@
 						<%} %>
 					</tbody>
 				</table>
-			</div>
-			
-
+			</div>			
 			<div id="detail-content">
-			<div id="record">
-				Tổng số bản ghi: <span id="record-total"></span>
-				<div class="toggle-detail-content">
-					<span class="arrow-toggle"></span>
+				<div id="record">
+					Tổng số bản ghi: <span id="record-total"></span>
+					<div class="toggle-detail-content">
+						<span class="arrow-toggle"></span>
+					</div>
 				</div>
-			</div>
-			</div>
-		
+			</div>		
 	</div>
 	</div>
 	</div>

@@ -41,7 +41,9 @@
 				clearTimeout(timeout);
 				alert('Hết thời gian làm bài. Bấm để xem kết quả!!!');
 		       // location = 'sub';
-		      document.submit.submit();
+//		      document.submit.submit();
+		      
+		      document.getElementById("sendResult").submit();
 		       return 0;
 			}
 			

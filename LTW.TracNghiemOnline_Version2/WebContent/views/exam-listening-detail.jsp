@@ -120,7 +120,7 @@ html {
 
 					<!-- Nội dung -->
 					<!-- phan mot -->
-					<form method="post" action="<%=request.getContextPath()%>/exam-listening-detail">					
+					<form method="post" action="<%=request.getContextPath()%>/exam-listening-detail" id="sendResult">					
 					<input type="hidden" value="<%=request.getAttribute("examId") == null? 0:request.getAttribute("examId")%>" name="id">
 					<div class="card">
 						<div class="card-direction card-direction-image">

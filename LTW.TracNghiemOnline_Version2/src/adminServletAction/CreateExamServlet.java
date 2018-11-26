@@ -3,6 +3,8 @@ package adminServletAction;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Random;
 
 import javax.servlet.RequestDispatcher;
@@ -16,9 +18,11 @@ import javax.servlet.http.HttpSession;
 import dao.AnswerDAO;
 import dao.CategoryDAO;
 import dao.QuestionDAO;
+import dao.QuestionExamDAO;
 import model.Answer;
 import model.Category;
 import model.Question;
+import model.QuestionExam;
 import model.UserModel;
 
 @WebServlet("/createExam")
@@ -28,73 +32,91 @@ public class CreateExamServlet extends HttpServlet {
 	private CategoryDAO catDAO;
 	private QuestionDAO questionDAO;
 	private AnswerDAO answerDAO;
-	ArrayList<Category> listCategory;
-	
-    public CreateExamServlet() {
-        super();
-        catDAO = new CategoryDAO();
-        questionDAO = new QuestionDAO();
-        answerDAO = new AnswerDAO();
-    }
+	private ArrayList<Question> questionPart1;
+	private ArrayList<Question> questionPart2;
+	private ArrayList<Question> questionPart3;
+	private ArrayList<Question> questionPart4;
+	private ArrayList<Category> listCategory;
+	private QuestionExamDAO qeDAO;
+	private int examId;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public CreateExamServlet() {
+		super();
+		catDAO = new CategoryDAO();
+		questionDAO = new QuestionDAO();
+		answerDAO = new AnswerDAO();
+		qeDAO = new QuestionExamDAO();				
+	}
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		HttpSession session = request.getSession();
 		try {
-			UserModel user = (UserModel) session.getAttribute("User");	
-			if(user == null) {
-				response.sendRedirect(request.getContextPath()+"/login");
-				return;
-			}
-			listCategory = catDAO.getAllExam();
+			questionPart1 = questionDAO.getQuestionByCategory(1);
+			questionPart2 = questionDAO.getQuestionByCategory(2);
+			questionPart3 = questionDAO.getQuestionByCategory(3);
+			questionPart4 = questionDAO.getQuestionByCategory(4);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		request.setAttribute("listCategory", listCategory);
-		System.out.println("here");
-		RequestDispatcher dispatcher = request.getRequestDispatcher("./admin/views/addQuestion.jsp");
-		dispatcher.forward(request, response);
+		}		
+		doPost(request, response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		Random ran = new Random();
-		String questionCode = "na"+ran.nextInt(1000)+"na"+ran.nextInt(2000);
-		int partId = Integer.parseInt(request.getParameter("partId"));
-		String qsContent = request.getParameter("qsContent");
-		String answerContent1 = request.getParameter("answer1");
-		String answerContent2 = request.getParameter("answer2");
-		String answerContent3 = request.getParameter("answer3");
-		String answerContent4 = request.getParameter("answer4");
-		int rightAnswer = Integer.parseInt(request.getParameter("right-answer"));
-		
-		Question qs = new Question();
-		qs.setQuestionCode(questionCode);
-		qs.setContent(qsContent);
-		qs.setCategoryId(partId);
-		Answer answer1 = new Answer(answerContent1, questionCode);
-		Answer answer2 = new Answer(answerContent2, questionCode);
-		Answer answer3 = new Answer(answerContent3, questionCode);
-		Answer answer4 = new Answer(answerContent4, questionCode);
-		Answer[] answers = {answer1, answer2, answer3, answer4};
-		for(int i = 1; i<=4 ;i++) {
-			if(i == rightAnswer) {
-				answers[i-1].setIsCorrect(1);			
+	public void randomCreateExam(int examId, ArrayList<Question> questionParts, int number) {
+		QuestionExam questionExam = null;
+		ArrayList<QuestionExam> listQE = new ArrayList<>();
+		Question question = null;	
+		Random r = new Random();
+		int count = 0;
+		int index = 0;
+//		System.out.println(questionParts.size());
+		while (count < number) {
+			question = new Question();	
+			questionExam = new QuestionExam();
+			questionExam.setExamId(examId);
+			index = r.nextInt(questionParts.size() - 1);
+//			System.out.println(index);			
+			question = questionParts.get(index);
+			count++;
+			questionParts.remove(index);
+///			System.out.print(question.getQuestionId()+" ");
+			questionExam.setQuestionId(question.getQuestionId());	
+			listQE.add(questionExam);
+		}
+//		int a = 0;
+		System.out.println();
+		for(QuestionExam qe : listQE) {
+			qeDAO.insert(qe);
+//			System.out.print(qe.getQuestionId()+" ");
+		}
+//			System.out.println();
+		//System.out.println("NUMBER: "+number +"So cau: "+listQE.size());
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub		
+		try {
+			int examId = Integer.parseInt(request.getParameter("id"));
+			if(qeDAO.exist(examId)==0) {
+				randomCreateExam(examId, questionPart1, 10);
+				randomCreateExam(examId, questionPart2, 30);
+				randomCreateExam(examId, questionPart3, 30);
+				randomCreateExam(examId, questionPart4, 30);				
+				response.sendRedirect(request.getContextPath()+"/manageExam?id="+examId);				
 			}
 			else {
-				answers[i-1].setIsCorrect(0);
+				request.setAttribute("error", "Đề thi đã được tạo!!!");
+				//response.sendRedirect(request.getContextPath()+"/manageExam?id="+examId);
+				RequestDispatcher dispatcher = request.getRequestDispatcher(request.getContextPath()+"/manageExam?id="+examId);
+				dispatcher.forward(request, response);
 			}
+			
+		}catch (NumberFormatException e) {
+			// TODO: handle exception
+			e.printStackTrace();
 		}
-		questionDAO.insert(qs);
-		
-//		System.out.println("Question content"+qsContent);
-//		System.out.println("Question code"+questionCode);
-//		
-		for(int i = 0; i < 4; i++) {
-			answerDAO.insert(answers[i]);
-		}
-		response.sendRedirect(request.getContextPath()+"/manageQuestion");
-	}
 
+	}
 }
